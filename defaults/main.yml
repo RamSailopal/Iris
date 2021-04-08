@@ -3,8 +3,11 @@
 platform: lnxsusex86
 instname: TEST
 inst_dir: /usr/local/cache
-mangrp: cacheusr
-cspbool: Y
-servtyp: Apache
-csp_dir: /opt/cspgateway
+mangrp: irisadmin
+manusr: irisadmin
+irisusr: iris
+irisgrp: iris
+sec: Minimal
+csppass: Dummy
+userpass: Dummy
 key_bool: N
