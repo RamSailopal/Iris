@@ -1,8 +1,9 @@
 ---
 # defaults file for cache
+inst_tar: IRIS_Community-2020.1.1.408.0-lnxrhx64.tar.gz
 platform: lnxsusex86
 instname: TEST
-inst_dir: /usr/local/cache
+inst_dir: /usr/local/iris
 mangrp: irisadmin
 manusr: irisadmin
 irisusr: iris
