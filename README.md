@@ -31,21 +31,37 @@ inst_dir - Where to install Iris
 
 [ Default - /usr/local/iris ]
 
-mangrp - The management group to run Cache under
+sec - The level of security to initially install with (either Minimal,Normal or Lockdown)
 
-[ Default - irisusr ]
+[ Default - Minimal ]
 
-cspbool - Whether to install Cache Server Pages or not (Y or N)
+mangrp - The management group to run Iris under
 
-[ Default - Y ]
+[ Default - irisadmin ]
 
-servtyp - What type of web stack you are running (either Apache of Nginx)
+manusr - The management user to run Iris under
 
-[ Default - Apache ]
+[ Default - irisadmin ]
 
-csp_dir - Where to install Cache Server Pages (CSP)
+mangrp - The management group to run Iris under
 
-[ Default - /opt/cspgateway ]
+[ Default - irisadmin ]
+
+irisusr - The normal user to run Iris under
+
+[ Default - iris ]
+
+irisgrp - The normal group to run Iris under
+
+[ Default - iris ]
+
+csppass - CSP System User Password
+
+[ Default - Dummy ]
+
+userpass - Password that is required for Normal or Lockdown Security modes. If Minimal is selected, this settingis ignored
+
+[ Default - Dummy ]
 
 key_bool - Whether you have a Cache key/licence file to copy (Y or N) If Y then you must pass the variable key_loc which should contain the location of the key file on the local server
 
