@@ -1,0 +1,15 @@
+[Unit]
+Description=Intersystems Iris daemon
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/bin/bash -c "/usr/bin/iris start {{ instname }} quietly"
+ExecStop=/bin/bash -c "/usr/bin/iris stop {{ instname }} quietly"
+ExecReload=/bin/bash -c "/usr/bin/iris restart {{ instname }} quietly"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+Alias=cache.service
+
