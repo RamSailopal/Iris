@@ -11,9 +11,9 @@
      - { src: "templates/irisinstall", dest: "/tmp/irisinstall", mode: "0744" }
      - { src: "templates/iris.service", dest: "/usr/lib/systemd/system/iris.service", mode: "0444" }
 
-- name: Extract foo.tgz into /var/lib/foo
+- name: Extract IRIS installation media
   unarchive:
-    src: files/IRIS_Community-2020.1.1.408.0-lnxrhx64.tar.g
+    src: "files/{{ inst_tar }}"
     dest: /tmp
 
 
@@ -25,23 +25,28 @@
     - { name: 'kernel.shmall', value: '2097152' }
     - { name: 'kernel.shmmax', value: '333554432' }
 
-- name: "Add the management group user"
+
+- name: "Add users for installaton"
   user:
-   name: "{{ mangrp }}"
+   name: "{{ item }}"
    state: "present"
+  loop:
+    - "{{ manusr }}"
+    - "{{ irisusr }}"
+
+- name: "Add groups for installaton"
+  group:
+   name: "{{ item }}"
+   state: "present"
+  loop:
+    - "{{ mangrp }}"
+    - "{{ irisgrp }}"
 
 - name: "Run the Iris install script"
-  command: "/tmp/irisinstall {{ platform }}"
+  command: "/tmp/irisinstall"
   notify:
     - Reload the systemd service daemon
     - restart iris
 
 
-- name: Copy the Cache key file
-  copy:
-     src: "{{ key_loc }}"
-     dest: "{{ inst_dir }}/mgr/cache.key"
-  when: 
-   - key_bool=="Y" 
- 
 

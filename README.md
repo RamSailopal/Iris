@@ -8,11 +8,15 @@ Requirements
 
 It is assumed that Iris is to be installed on either a Red Hat or SuSE derived system as advised by Intersystems
 
-It is also assumed that you have a Intersystems IRIS installation tar file which is deposited in the files directory and called IRIS_Community-2020.1.1.408.0-lnxrhx64.tar.gz
+It is also assumed that you have a Intersystems IRIS installation tar file which is deposited in the files directory. The name of this file then need to be set in the inst_tar variable (see below)
 
 
 Role Variables
 --------------
+
+inst_tar - The name of the tar file that will be installed from
+
+[ Default - IRIS_Community-2020.1.1.408.0-lnxrhx64.tar.gz ]
 
 package - The architecture of the linux environment. Can be one of:
 
@@ -62,10 +66,6 @@ csppass - CSP System User Password
 userpass - Password that is required for Normal or Lockdown Security modes. If Minimal is selected, this settingis ignored
 
 [ Default - Dummy ]
-
-key_bool - Whether you have a Cache key/licence file to copy (Y or N) If Y then you must pass the variable key_loc which should contain the location of the key file on the local server
-
-[ Default - N ]
 
 Example Playbook
 ----------------
