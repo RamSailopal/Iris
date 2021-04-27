@@ -10,13 +10,10 @@
   loop:
      - { src: "templates/irisinstall", dest: "/tmp/irisinstall", mode: "0744" }
      - { src: "templates/iris.service", dest: "/usr/lib/systemd/system/iris.service", mode: "0444" }
-
 - name: Extract IRIS installation media
   unarchive:
     src: "files/{{ inst_tar }}"
     dest: /tmp
-
-
 - name: "Change shared memory settings"
   sysctl:
     name: "{{ item.name }}"
@@ -24,8 +21,6 @@
   loop:
     - { name: 'kernel.shmall', value: '2097152' }
     - { name: 'kernel.shmmax', value: '333554432' }
-
-
 - name: "Add users for installaton"
   user:
    name: "{{ item }}"
@@ -33,7 +28,6 @@
   loop:
     - "{{ manusr }}"
     - "{{ irisusr }}"
-
 - name: "Add groups for installaton"
   group:
    name: "{{ item }}"
@@ -41,12 +35,10 @@
   loop:
     - "{{ mangrp }}"
     - "{{ irisgrp }}"
-
 - name: "Run the Iris install script"
   command: "/tmp/irisinstall"
   notify:
     - Reload the systemd service daemon
     - restart iris
-
-
-
+  register: cmd
+  changed_when: cmd_end is not search("")
